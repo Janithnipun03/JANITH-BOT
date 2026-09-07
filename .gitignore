@@ -2,3 +2,5 @@ node_modules/
 session/
 .npm/
 *.log
+
+auth_info/
