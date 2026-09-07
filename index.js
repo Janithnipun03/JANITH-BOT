@@ -19,7 +19,7 @@ async function startBot() {
   sock.ev.on("creds.update", saveCreds);
 
   sock.ev.on("connection.update", (update) => {
-    const { connection, qr } = update;
+    const { connection, qr, lastDisconnect } = update;
 
     if (qr) {
       console.log("\n📱 Scan this QR:\n");
@@ -31,8 +31,10 @@ async function startBot() {
     }
 
     if (connection === "close") {
-      console.log("🔄 CONNECTION CLOSED — RESTARTING...");
-      setTimeout(startBot, 3000);
+      console.log("❌ CONNECTION CLOSED");
+      console.log("Reason:", lastDisconnect?.error);
+      console.log("Full update:", update);
+      setTimeout(startBot, 5000);
     }
   });
 
@@ -64,11 +66,38 @@ async function startBot() {
 
     if (text.trim().toLowerCase() === ".menu") {
       await sock.sendMessage(jid, {
-        text: `🤖 BOT MENU
+        text: `🤖 JANITH BOT MENU
 
-.ping
-.alive
-.menu`
+╭───〔 🎵 MUSIC 〕
+│ • .song <name/link>
+│ • .audio <link>
+╰────────────
+
+╭───〔 🎬 VIDEO 〕
+│ • .video <link>
+│ • .yt <link>
+╰────────────
+
+╭───〔 📱 SOCIAL MEDIA 〕
+│ • .instagram <link>
+│ • .facebook <link>
+│ • .tiktok <link>
+│ • .twitter <link>
+╰────────────
+
+╭───〔 📥 DOWNLOAD 〕
+│ • .download <public URL>
+│ • .media <public URL>
+╰────────────
+
+╭───〔 🛠️ GENERAL 〕
+│ • .ping
+│ • .alive
+│ • .owner
+│ • .menu
+╰────────────
+
+⚡ JANITH BOT`
       });
     }
   });

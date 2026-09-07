@@ -4,3 +4,7 @@ session/
 *.log
 
 auth_info/
+auth_info/
+auth_info_backup/
+session/
+index.js.backup

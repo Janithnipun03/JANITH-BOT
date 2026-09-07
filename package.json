@@ -1,13 +1,10 @@
-"main": "bot.js",
-"engines": {
-  "node": "24.x"
-}{
+{
   "name": "whatsapp-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "WhatsApp Bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
